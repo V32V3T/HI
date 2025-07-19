@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trending Professionals - Empowering Census 2027</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+ 
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#e13c4d',
+                        'primary-dark': '#c2334b'
+                    },
+                    fontFamily: {
+                        'sans': ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                            url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f0f0f0" width="1200" height="600"/><path fill="%23e0e0e0" d="M200,100 Q400,150 600,100 T1000,100 L1000,300 Q800,250 600,300 T200,300 Z"/><circle fill="%23d0d0d0" cx="300" cy="200" r="20"/><circle fill="%23d0d0d0" cx="500" cy="180" r="15"/><circle fill="%23d0d0d0" cx="700" cy="220" r="18"/><circle fill="%23d0d0d0" cx="900" cy="190" r="12"/></svg>');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .counter-animation {
+            transition: all 0.5s ease-in-out;
+        }
+        
+        .carousel-item {
+            min-width: 200px;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="font-sans bg-white text-black">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white shadow-lg z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-3">
+                    <img src="TP.png" alt="Trending Professionals Logo" class="h-10 w-10">
+                    <span class="text-xl font-bold text-primary">Trending Professionals</span>
+                </div>
+                
+                <div class="hidden md:flex space-x-6">
+                    <a href="#home" class="text-gray-700 hover:text-primary transition">Home</a>
+                    <a href="#about" class="text-gray-700 hover:text-primary transition">About</a>
+                    <a href="#services" class="text-gray-700 hover:text-primary transition">Services</a>
+                    <a href="#gallery" class="text-gray-700 hover:text-primary transition">Gallery</a>
+                    <a href="#contact" class="text-gray-700 hover:text-primary transition">Contact</a>
+                </div>
+                
+                <button id="mobile-menu-btn" class="md:hidden text-primary">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <a href="#home" class="block py-2 text-gray-700 hover:text-primary">Home</a>
+                <a href="#about" class="block py-2 text-gray-700 hover:text-primary">About</a>
+                <a href="#services" class="block py-2 text-gray-700 hover:text-primary">Services</a>
+                <a href="#gallery" class="block py-2 text-gray-700 hover:text-primary">Gallery</a>
+                <a href="#contact" class="block py-2 text-gray-700 hover:text-primary">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <!-- <section id="home" class="min-h-[120vh] flex flex-col lg:flex-row items-center justify-center pt-20 px-4 sm:px-6 lg:px-8 bg-black">  -->
+    <!-- <section id="home" class="min-h-[120vh] flex flex-col lg:flex-row items-center justify-center pt-8 px-4 sm:px-6 lg:px-8 bg-black"> -->
+    <section id="home" class="min-h-[120vh] flex flex-col lg:flex-row items-center justify-center pt-24 px-4 sm:px-6 lg:px-8 bg-black">
+        <!-- Mobile Services Text - Only visible on mobile -->
+        <div class="lg:hidden top-16 sm:top-20 w-full bg-black bg-opacity-80 backdrop-blur-sm z-40 py-2">
+            <div class="text-center">
+                <p class="text-white font-bold text-xs sm:text-sm">Tab to book the services</p>
+            </div>
+        </div>
+        <!-- Mobile/Tablet: All images in a grid at top -->
+        <div class="lg:hidden w-full mb-8 flex justify-center">
+            <div class="grid grid-cols-4 gap-2 sm:gap-4 w-fit">
+                <a href="https://onit-lte.trendingprofessionals.com/">
+                <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-white">
+                    <img src="images/1.jpg" alt="Technician 1" class="w-full h-full object-cover">
+                </div>
+                </a>
+
+                <a href="https://onit-lte.trendingprofessionals.com/">
+                <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-white">
+                    <img src="images/2.jpg" alt="Technician 2" class="w-full h-full object-cover">
+                </div>
+                </a>
+
+                <a href="https://onit-lte.trendingprofessionals.com/">
+                <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-white">
+                    <img src="images/3.jpg" alt="Technician 3" class="w-full h-full object-cover">
+                </div>
+                </a>
+
+                <a href="https://onit-lte.trendingprofessionals.com/">
+                <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-white">
+                    <img src="images/4.jpg" alt="Technician 4" class="w-full h-full object-cover">
+                </div>
+                </a>
+
+                <a href="https://onit-lte.trendingprofessionals.com/">
+                <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-white">
+                    <img src="images/5.jpg" alt="Technician 5" class="w-full h-full object-cover">
+                </div>
+                </a>
+
+                <a href="https://onit-lte.trendingprofessionals.com/">
+                <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-white">
+                    <img src="images/6.jpg" alt="Technician 6" class="w-full h-full object-cover">
+                </div>
+                </a>
+
+                <a href="https://onit-lte.trendingprofessionals.com/">
+                <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-white">
+                    <img src="images/7.jpg" alt="Technician 7" class="w-full h-full object-cover">
+                </div>
+                </a>
+
+                <a href="https://onit-lte.trendingprofessionals.com/">
+                <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-white">
+                    <img src="images/8.jpg" alt="Technician 8" class="w-full h-full object-cover">
+                </div>
+                </a>
+
+            </div>
+        </div>
+
+
+        <!-- Desktop: Left side images -->
+        <div class="hidden lg:flex flex-col space-y-4 w-32 xl:w-40">
+            <p style="color: white; font-weight: bold;">Tab to book the services</p>
+            <a href="https://onit-lte.trendingprofessionals.com/">
+            <div class="w-32 h-32 xl:w-36 xl:h-36 rounded-full overflow-hidden border-3 border-white">
+                <img src="images/1.jpg" alt="Technician 1" class="w-full h-full object-cover">
+            </div>
+            </a>
+            <a href="https://onit-lte.trendingprofessionals.com/">
+            <div class="w-32 h-32 xl:w-36 xl:h-36 rounded-full overflow-hidden border-3 border-white">
+                <img src="images/2.jpg" alt="Technician 2" class="w-full h-full object-cover">
+            </div>
+            </a>
+            <a href="https://onit-lte.trendingprofessionals.com/">
+            <div class="w-32 h-32 xl:w-36 xl:h-36 rounded-full overflow-hidden border-3 border-white">
+                <img src="images/3.jpg" alt="Technician 3" class="w-full h-full object-cover">
+            </div>
+            </a>
+            <a href="https://onit-lte.trendingprofessionals.com/">
+            <div class="w-32 h-32 xl:w-36 xl:h-36 rounded-full overflow-hidden border-3 border-white">
+                <img src="images/4.jpg" alt="Technician 4" class="w-full h-full object-cover">
+            </div>
+            </a>
+        </div>
+
+        <!-- Center content -->
+        <div class="text-center text-white flex-1 max-w-4xl px-4 lg:px-8">
+            <div class="h-32 w-32 sm:h-40 sm:w-40 lg:h-56 lg:w-56 mx-auto mb-6 lg:mb-8 flex items-center justify-center">
+            <img src="TP.png" alt="Trending Professionals Logo" class="h-28 w-28 sm:h-36 sm:w-36 lg:h-52 lg:w-52 rounded-full object-cover">
+            </div>
+
+
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 lg:mb-4 leading-tight">
+                Trending Professionals
+            </h1>
+            <h2 class="text-lg sm:text-xl md:text-2xl font-medium mb-4 lg:mb-6 text-gray-200">
+                Empowering India's Future Through Workforce Innovation
+            </h2>
+            <p class="text-sm sm:text-base mb-6 lg:mb-8 max-w-2xl mx-auto text-gray-300">
+                Your Trusted Partner for Nationwide Training & Field Operations
+            </p>
+            
+            <div class="flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-4 lg:space-x-6">
+                <a href="/resorces/impdata/TP.pdf" target="_blank" 
+                class="bg-primary hover:bg-primary-dark text-white px-6 lg:px-8 py-3 rounded-lg font-semibold transition duration-300 text-sm sm:text-base">
+                    <i class="fas fa-download mr-2"></i> Know more
+                </a>
+                <a href="#ExecutionModel" 
+                class="bg-primary hover:bg-primary-dark text-white px-6 lg:px-8 py-3 rounded-lg font-semibold transition duration-300 text-sm sm:text-base">
+                    <i class="fas fa-chalkboard-teacher mr-2"></i> View Training Plan
+                </a>
+                <a href="#contact" 
+                class="bg-primary hover:bg-primary-dark text-white px-6 lg:px-8 py-3 rounded-lg font-semibold transition duration-300 text-sm sm:text-base">
+                    <i class="fas fa-phone mr-2"></i> Contact Us
+                </a>
+            </div>
+        </div>
+
+        <!-- Desktop: Right side images -->
+        <div class="hidden lg:flex flex-col space-y-4 w-32 xl:w-40">
+            <p style="color: white; font-weight: bold;">Tab to book the services</p>
+            <a href="https://onit-lte.trendingprofessionals.com/">
+            <div class="w-32 h-32 xl:w-36 xl:h-36 rounded-full overflow-hidden border-3 border-white">
+                <img src="images/5.jpg" alt="Technician 5" class="w-full h-full object-cover">
+            </div>
+            </a>
+            <a href="https://onit-lte.trendingprofessionals.com/">
+            <div class="w-32 h-32 xl:w-36 xl:h-36 rounded-full overflow-hidden border-3 border-white">
+                <img src="images/6.jpg" alt="Technician 6" class="w-full h-full object-cover">
+            </div>
+            </a>
+            <a href="https://onit-lte.trendingprofessionals.com/">
+            <div class="w-32 h-32 xl:w-36 xl:h-36 rounded-full overflow-hidden border-3 border-white">
+                <img src="images/7.jpg" alt="Technician 7" class="w-full h-full object-cover">
+            </div>
+            </a>
+            <a href="https://onit-lte.trendingprofessionals.com/">
+            <div class="w-32 h-32 xl:w-36 xl:h-36 rounded-full overflow-hidden border-3 border-white">
+                <img src="images/8.jpg" alt="Technician 8" class="w-full h-full object-cover">
+            </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- About Us -->
+    <section id="about" class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-4xl font-bold text-center mb-12">About Trending Professionals</h2>
+                
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-6 text-primary">Who We Are</h3>
+                        <p class="text-lg text-gray-700 mb-6">
+                            Trending Professionals is an MSME- and GST-certified company based in Ghaziabad, founded in 2023. We specialize in providing end-to-end manpower and training support, tailored for national-level operations that require scalable execution and real-time management.                        </p>
+                        <p class="text-lg text-gray-700 mb-6">
+                            At Trending Professionals, we don’t just provide services we deliver tailored solutions that drive real, measurable results. With a client-first approach, we craft impactful strategies backed by industry expertise and innovation. Our team ensures every project is executed with efficiency, creativity, and precision. Whether you're a startup or an established enterprise, we are committed to timely delivery, consistent support, and outcomes that exceed expectations. Your satisfaction and success are at the core of everything we do.</p>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-8 rounded-lg">
+                        <h4 class="text-xl font-semibold mb-4">Our Vision</h4>
+                        <p class="text-gray-700 mb-6">
+                            To contribute towards building a digitally empowered India by organizing and uplifting the skilled workforce fraternity. We envision creating an ecosystem where skilled labour is recognized, empowered, and integrated into the mainstream economy through technology and structured processes — supporting the Government of India’s vision of digitalization and skill development.
+                        </p>
+                        
+                        <h4 class="text-xl font-semibold mb-4">Our Mission</h4>
+                        <p class="text-gray-700">
+                            To bridge the gap between skilled labour, businesses, and end-users by offering a seamless, reliable, and quality-driven service experience. We are committed to empowering skilled professionals, streamlining service delivery, and ensuring that every customer receives hassle-free, timely, and high-quality services — driving both economic growth and social development in a new Digital India.
+                        </p>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center text-gray-900 mb-12">Our Services</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <!-- Service 1 -->
+            <div class="bg-gray-50 p-6 rounded-2xl shadow hover:shadow-lg transition text-center">
+            <div class="flex justify-center mb-4">
+                <i data-lucide="handshake" class="w-10 h-10 text-red-500"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-2">B2B Technical Service Outsourcing</h3>
+            <p class="text-gray-600">Partnering with brands, OEMs, and enterprises to deliver technical manpower and on-site service execution.</p>
+            </div>
+
+        <!-- Service 2 -->
+        <div class="bg-gray-50 p-6 rounded-2xl shadow hover:shadow-lg transition text-center">
+            <div class="flex justify-center mb-4">
+            <i data-lucide="wrench" class="w-10 h-10 text-red-500"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-2">Home Appliance Installation & Repair</h3>
+            <p class="text-gray-600">Reliable setup and servicing of ACs, TVs, geysers, chimneys, refrigerators, washing machines etc</p>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="bg-gray-50 p-6 rounded-2xl shadow hover:shadow-lg transition text-center">
+            <div class="flex justify-center mb-4">
+            <i data-lucide="camera" class="w-10 h-10 text-red-500"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-2">CCTV & Surveillance Solutions</h3>
+            <p class="text-gray-600">Full-scale CCTV installation and security system integration for homes, offices, and institutions.</p>
+        </div>
+        
+        <!-- Service 4 -->
+        <div class="bg-gray-50 p-6 rounded-2xl shadow hover:shadow-lg transition text-center">
+            <div class="flex justify-center mb-4">
+            <i data-lucide="settings" class="w-10 h-10 text-red-500"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-2">Integrated Service Management</h3>
+            <p class="text-gray-600">From booking to resolution—end-to-end task tracking, execution, and customer feedback collection.</p>
+        </div>
+
+        <!-- Service 5 -->
+        <div class="bg-gray-50 p-6 rounded-2xl shadow hover:shadow-lg transition text-center">
+            <div class="flex justify-center mb-4">
+            <i data-lucide="map-pin" class="w-10 h-10 text-red-500"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-2">Pan-India Service</h3>
+            <p class="text-gray-600">Verified, skilled technicians available pan-India for rapid, on-demand service fulfillment.</p>
+        </div>
+
+
+        <!-- Service 6 -->
+        <div class="bg-gray-50 p-6 rounded-2xl shadow hover:shadow-lg transition text-center">
+            <div class="flex justify-center mb-4">
+            <i data-lucide="graduation-cap" class="w-10 h-10 text-red-500"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-800 mb-2">Workforce Training & Certification</h3>
+            <p class="text-gray-600">Specialized training programs to create skilled service professionals aligned with client and market needs.</p>
+        </div>
+
+        </div>
+    </div>
+    </section>
+
+
+    <!-- Why Choose Trending Professionals -->
+    <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-12 text-black">Why Choose Trending Professionals?</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 text-center">
+
+        <!-- Trusted Since 2023 -->
+        <div class="p-6 bg-white border border-gray-200 rounded-2xl shadow-md hover:shadow-xl transition">
+            <div class="flex justify-center mb-4 text-[rgb(255,60,77)]">
+            <i data-lucide="shield-check" class="w-14 h-14"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-black mb-2">Trusted B2B Since 2023</h3>
+            <p class="text-black text-sm">
+            Your reliable partner in tech-enabled field services, trusted by brands nationwide.
+            </p>
+        </div>
+
+        <!-- End Users Served -->
+        <div class="p-6 bg-white border border-gray-200 rounded-2xl shadow-md hover:shadow-xl transition">
+            <div class="flex justify-center mb-4 text-[rgb(255,60,77)]">
+            <i data-lucide="users" class="w-14 h-14"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-black mb-2">End Users Served</h3>
+            <p class="text-black text-sm">
+            Delivering professional support to thousands of customers across India with consistency and care.
+            </p>
+        </div>
+
+        <!-- Nationwide Services -->
+        <div class="p-6 bg-white border border-gray-200 rounded-2xl shadow-md hover:shadow-xl transition">
+            <div class="flex justify-center mb-4 text-[rgb(255,60,77)]">
+            <i data-lucide="map" class="w-14 h-14"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-black mb-2">Nationwide Services</h3>
+            <p class="text-black text-sm">
+            From metros to remote regions, we deliver consistent service reach and expert support.
+            </p>
+        </div>
+
+        <!-- Doorstep Support -->
+        <div class="p-6 bg-white border border-gray-200 rounded-2xl shadow-md hover:shadow-xl transition">
+            <div class="flex justify-center mb-4 text-[rgb(255,60,77)]">
+            <i data-lucide="truck" class="w-14 h-14"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-black mb-2">Doorstep Support</h3>
+            <p class="text-black text-sm">
+            Installation, repair, and training – delivered directly at your location with speed and professionalism.
+            </p>
+        </div>
+
+        </div>
+    </div>
+    </section>
+
+    <!-- INIT Lucide -->
+    <script>
+    lucide.createIcons();
+    </script>
+
+
+
+
+    <!-- Execution Model -->
+    <section id="ExecutionModel" class="py-20 bg-gradient-to-br from-gray-50 to-gray-100">
+    <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-16 text-gray-800">Our 5-Step Execution Model</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-10 max-w-7xl mx-auto">
+
+        <!-- Step 1 -->
+        <div class="bg-white shadow-md rounded-xl p-6 text-center hover:shadow-xl transition duration-300">
+            <div class="bg-[#ff3c4d] text-white w-14 h-14 mx-auto rounded-full flex items-center justify-center text-xl font-bold mb-4">1</div>
+            <h3 class="text-lg font-semibold mb-1 text-gray-800">Mobilization</h3>
+            <p class="text-sm text-gray-600">Resource planning and team assembly</p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="bg-white shadow-md rounded-xl p-6 text-center hover:shadow-xl transition duration-300">
+            <div class="bg-[#ff3c4d] text-white w-14 h-14 mx-auto rounded-full flex items-center justify-center text-xl font-bold mb-4">2</div>
+            <h3 class="text-lg font-semibold mb-1 text-gray-800">Training</h3>
+            <p class="text-sm text-gray-600">Comprehensive skill development programs</p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="bg-white shadow-md rounded-xl p-6 text-center hover:shadow-xl transition duration-300">
+            <div class="bg-[#ff3c4d] text-white w-14 h-14 mx-auto rounded-full flex items-center justify-center text-xl font-bold mb-4">3</div>
+            <h3 class="text-lg font-semibold mb-1 text-gray-800">Deployment</h3>
+            <p class="text-sm text-gray-600">Strategic wide-range field deployment</p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="bg-white shadow-md rounded-xl p-6 text-center hover:shadow-xl transition duration-300">
+            <div class="bg-[#ff3c4d] text-white w-14 h-14 mx-auto rounded-full flex items-center justify-center text-xl font-bold mb-4">4</div>
+            <h3 class="text-lg font-semibold mb-1 text-gray-800">Monitoring</h3>
+            <p class="text-sm text-gray-600">Real-time progress tracking</p>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="bg-white shadow-md rounded-xl p-6 text-center hover:shadow-xl transition duration-300">
+            <div class="bg-[#ff3c4d] text-white w-14 h-14 mx-auto rounded-full flex items-center justify-center text-xl font-bold mb-4">5</div>
+            <h3 class="text-lg font-semibold mb-1 text-gray-800">Reporting</h3>
+            <p class="text-sm text-gray-600">Transparent compliance documentation</p>
+        </div>
+
+        </div>
+    </div>
+    </section>
+
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="w-full bg-gray-100 px-4 py-12 flex flex-col items-center justify-center">
+
+        <!-- Section Heading -->
+        <h2 class="text-4xl font-bold text-center text-gray-800 mb-6">
+            Gallery
+        </h2>
+
+        <!-- Image and Caption Wrapper -->
+        <div class="w-full relative">
+            <!-- Image -->
+            <img src="resorces/certificates/TrainingSession-UP.jpg"
+                alt="Training Session"
+                class="w-full h-auto object-cover rounded-lg" />
+
+            <!-- Caption -->
+            <div class="bg-black bg-opacity-60 text-white px-4 py-3 text-center md:absolute md:bottom-0 md:left-0 md:right-0 md:rounded-b-lg">
+                <p class="text-sm sm:text-base md:text-lg font-medium">
+                    Training & Placement Drive – An interactive session designed to equip students with real-world insights, career guidance, and industry expectations.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- Case Study -->
+    <section class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl font-bold mb-8">Other Ventures</h2>
+                <!-- <h2 class="text-4xl font-bold mb-8">PM SVANidhi Success Story</h2> -->
+                <div class="bg-gradient-to-r from-primary to-primary-dark text-white p-8 rounded-lg">
+                    <h3 class="text-2xl font-semibold mb-6">Transforming Street Vendor Ecosystem</h3>
+                    
+                    <div class="grid md:grid-cols-3 gap-8 mb-8">
+                        <div>
+                            <h4 class="text-3xl font-bold mb-2">25+</h4>
+                            <p>Urban Local Bodies Covered</p>
+                        </div>
+                        <div>
+                            <h4 class="text-3xl font-bold mb-2">1.5 Lakh+</h4>
+                            <p>Street Vendors Trained</p>
+                        </div>
+                        <div>
+                            <h4 class="text-3xl font-bold mb-2">95%</h4>
+                            <p>Digital Compliance Rate</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-lg">
+                        Our comprehensive training and support enabled seamless digital onboarding 
+                        of street vendors across multiple urban local bodies, achieving exceptional 
+                        compliance rates and user satisfaction.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PM SVANidhi Glimps-->
+    <section id="gallery" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">PM SVANidhi Glimps</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg">
+                    <!-- <div class="h-48 bg-gray-200 flex items-center justify-center">
+                        <i class="fas fa-image text-4xl text-gray-400"></i>
+                    </div> -->
+                    <img src="/resorces/certificates/SW1.jpg" alt="Training Session - UP image" loading="lazy" class="h-48 w-full object-cover">
+                    <div class="p-4">
+                        <h4 class="font-semibold">Towards Self-Reliance</h4>
+                        <p class="text-gray-600 text-sm">Beneficiaries in village reciving temporary licenses, a key step in their fromalization under the PM SVANidhi self-reliance.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg">
+                    <!-- <div class="h-48 bg-gray-200 flex items-center justify-center">
+                        <i class="fas fa-video text-4xl text-gray-400"></i>
+                    </div> -->
+                    <img src="/resorces/certificates/SW2.jpg" alt="Digital Training Module video" loading="lazy" class="h-48 w-full object-cover">
+                    <div class="p-4">
+                        <h4 class="font-semibold">Certificate Distribution to Empower Street Vendors</h4>
+                        <p class="text-gray-600 text-sm">Local camps facilitated the distribution of PM SVANidhi licenses, enabling street vendors to take a step toward formal self-employment.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg">
+                    <!-- <div class="h-48 bg-gray-200 flex items-center justify-center">
+                        <i class="fas fa-image text-4xl text-gray-400"></i>
+                    </div> -->
+                    <img src="/resorces/certificates/SW3.jpg" alt="Field Operations image" loading="lazy" class="h-48 w-full object-cover">
+                    <div class="p-4">
+                        <h4 class="font-semibold">Grassroot Activities</h4>
+                        <p class="text-gray-600 text-sm">Conducted camps to spread awareness among street vendors and their families about government support.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg">
+                    <!-- <div class="h-48 bg-gray-200 flex items-center justify-center">
+                        <i class="fas fa-image text-4xl text-gray-400"></i>
+                    </div> -->
+                    <img src="/resorces/certificates/SW4.jpg" alt="Certificate Distribution image" loading="lazy" class="h-48 w-full object-cover">
+                    <div class="p-4">
+                        <h4 class="font-semibold">Vendor Certificate Distribution</h4>
+                        <p class="text-gray-600 text-sm">Certificate distribution to the beneficiaries as temporary licenses.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg">
+                    <!-- <div class="h-48 bg-gray-200 flex items-center justify-center">
+                        <i class="fas fa-image text-4xl text-gray-400"></i>
+                    </div> -->
+                    <img src="/resorces/certificates/SW5.jpg" alt="MIS Dashboard Demo image" loading="lazy" class="h-48 w-full object-cover">
+                    <div class="p-4">
+                        <h4 class="font-semibold">Real-time profiling</h4>
+                        <p class="text-gray-600 text-sm">Conducted real-time profiling through 110-point questionnaire to assess the living standards of street vendors</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg overflow-hidden shadow-lg">
+                    <!-- <div class="h-48 bg-gray-200 flex items-center justify-center">
+                        <i class="fas fa-image text-4xl text-gray-400"></i>
+                    </div> -->
+                    <img src="/resorces/certificates/SW6.jpg" alt="Team Meeting image" loading="lazy" class="h-48 w-full object-cover">
+                    <div class="p-4">
+                        <h4 class="font-semibold">Awareness camps</h4>
+                        <p class="text-gray-600 text-sm">Loan distribution and scheme awareness camps</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Certifications -->
+    <section class="py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">Our Certifications</h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div id="certifications-carousel" class="flex overflow-x-auto space-x-6 pb-4">
+                    <div class="carousel-item bg-white p-6 rounded-lg shadow-lg text-center min-w-64">
+                        <div class="text-primary text-4xl mb-4">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">MSME Certificate</h3>
+                        <p class="text-gray-600 text-sm">Micro, Small & Medium Enterprises</p>
+                        <!-- <a href="resorces/impdata/MSMECertificate.pdf" download class="mt-4 text-primary hover:text-primary-dark inline-block"><i class="fas fa-download"></i> Download
+                        </a> -->
+                    </div>
+                    
+                    <div class="carousel-item bg-white p-6 rounded-lg shadow-lg text-center min-w-64">
+                        <div class="text-primary text-4xl mb-4">
+                            <i class="fas fa-file-invoice"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">GST Certificate</h3>
+                        <p class="text-gray-600 text-sm">Goods & Services Tax Registration</p>
+                        <!-- <a href="resorces/certificates/GSTCertificate.jpg" download class="mt-4 text-primary hover:text-primary-dark inline-block"><i class="fas fa-download"></i> Download
+                        </a> -->
+                    </div>
+                    
+                    <div class="carousel-item bg-white p-6 rounded-lg shadow-lg text-center min-w-64">
+                        <div class="text-primary text-4xl mb-4">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">GeM Registration</h3>
+                        <p class="text-gray-600 text-sm">Government e-Marketplace</p>
+                        <!-- <a href="resorces/certificates/GeMRegistration.jpg" download class="mt-4 text-primary hover:text-primary-dark inline-block"><i class="fas fa-download"></i> Download
+                        </a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Newsletter -->
+    <section class="py-20 bg-primary">
+    <div class="container mx-auto px-4 text-center">
+        <h2 class="text-4xl font-bold text-white mb-6">Stay Updated</h2>
+        <p class="text-xl text-white mb-8 max-w-2xl mx-auto">
+        Subscribe to our newsletter for the latest updates on national training initiatives and field workforce programs.
+        </p>
+
+        <form id="newsletter-form" class="max-w-md mx-auto w-full">
+        <div class="flex flex-col sm:flex-row sm:items-stretch">
+            <input 
+            type="email" 
+            id="newsletter-email"
+            placeholder="Enter your email" 
+            required
+            class="flex-1 px-4 py-3 rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none border-0 focus:outline-none focus:ring-2 focus:ring-white"
+            >
+            <button 
+            type="submit"
+            class="bg-black text-white px-6 py-3 rounded-b-lg sm:rounded-r-lg sm:rounded-bl-none hover:bg-gray-800 transition"
+            >
+            Subscribe
+            </button>
+        </div>
+        <p id="newsletter-message" class="text-white mt-4 hidden"></p>
+        </form>
+    </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">Uttar Pradesh District Readiness</h2>
+
+            <div class="max-w-4xl mx-auto text-center">
+            <div class="bg-white p-6 md:p-8 rounded-lg shadow-lg">
+                <div class="relative w-full h-0 pb-[56.25%] rounded overflow-hidden">
+                <iframe 
+                    src="https://www.google.com/maps/d/embed?mid=1_VC2PVEKZWwan0pd-J3xEExVLvL0aq4&ehbc=2E312F"
+                    class="absolute top-0 left-0 w-full h-full border-0"
+                    allowfullscreen
+                    loading="lazy">
+                </iframe>
+                </div>
+
+                <p class="text-gray-700 mt-4 mb-4">
+                Interactive map showing district-wise readiness for Census 2027 implementation
+                </p>
+
+                <div class="flex justify-center space-x-6 text-sm">
+                <div class="flex items-center">
+                    <div class="w-4 h-4 bg-blue-500 rounded mr-2"></div>
+                    <span>Reached (0 districts)</span>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- FAQs -->
+    <section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+
+        <div class="max-w-4xl mx-auto space-y-6">
+        
+        <!-- FAQ 1 -->
+        <details class="bg-white border border-gray-200 rounded-lg overflow-hidden">
+            <summary class="cursor-pointer px-6 py-4 text-left font-semibold text-gray-800 flex justify-between items-center">
+            <span>What services does Trending Professionals provide?</span>
+            <i class="fas fa-chevron-down"></i>
+            </summary>
+            <div class="px-6 pb-4 pt-2 text-gray-700">
+            We offer end-to-end technical services including appliance installation & maintenance (ACs, TVs, chimneys, etc.), background checks and employee verification, security surveillance setup (CCTV, DVR), and comprehensive service management solutions.
+            </div>
+        </details>
+
+        <!-- FAQ 2 -->
+            <details class="bg-white border border-gray-200 rounded-lg overflow-hidden">
+                <summary class="cursor-pointer px-6 py-4 text-left font-semibold text-gray-800 flex justify-between items-center">
+                    <span>How can I request a service from Trending Professionals?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </summary>
+                <div class="px-6 pb-4 pt-2 text-gray-700 space-y-4">
+                    <div>
+                        For individual customers (B2C): 
+                        <p>
+                            You can easily request a service by visiting our official website, browsing through the available service categories (such as appliance installation, CCTV setup, or background verification), and filling out a simple booking form. Once submitted, our support team will promptly reach out to confirm your request, provide pricing details, and schedule the service at your convenience.
+                        </p>
+                    </div>
+
+                    <div>
+                        For businesses (B2B):
+                        <p>
+                            If you represent a brand, enterprise, or organization seeking a scalable service solution, Please directly contact our enterprise support team via email or phone. We provide customized service packages, deployment support, and dedicated account management to ensure smooth onboarding and execution tailored to your operational needs.
+                        </p>
+                    </div>
+                </div>
+            </details>
+
+
+        <!-- FAQ 3 -->
+        <details class="bg-white border border-gray-200 rounded-lg overflow-hidden">
+            <summary class="cursor-pointer px-6 py-4 text-left font-semibold text-gray-800 flex justify-between items-center">
+            <span>Are your service personnel verified and trained?</span>
+            <i class="fas fa-chevron-down"></i>
+            </summary>
+            <div class="px-6 pb-4 pt-2 text-gray-700">
+            Yes, all our technicians and support staff undergo strict background checks and skill verification. We also provide training aligned with industry standards to ensure top-quality service.
+            </div>
+        </details>
+
+        <!-- FAQ 4 -->
+        <details class="bg-white border border-gray-200 rounded-lg overflow-hidden">
+            <summary class="cursor-pointer px-6 py-4 text-left font-semibold text-gray-800 flex justify-between items-center">
+            <span>Do you provide services in rural and remote areas?</span>
+            <i class="fas fa-chevron-down"></i>
+            </summary>
+            <div class="px-6 pb-4 pt-2 text-gray-700">
+            Absolutely! We are expanding to cover all 19,101 pin codes across India, including urban, semi-urban, and remote areas through our vast technician network and mobile workforce.
+            </div>
+        </details>
+
+        <details class="bg-white border border-gray-200 rounded-lg overflow-hidden">
+            <summary class="cursor-pointer px-6 py-4 text-left font-semibold text-gray-800 flex justify-between items-center">
+            <span>What makes Trending Professionals different from other service providers?</span>
+            <i class="fas fa-chevron-down"></i>
+            </summary>
+            <div class="px-6 pb-4 pt-2 text-gray-700">
+            Trending Professionals sets itself apart through trusted collaborations with renowned brands like Panasonic, LG, and Onsite GO, reflecting our credibility and industry alignment. Our transparent, pay-per-service pricing ensures clients always know what they’re paying for—no hidden charges or surprises. We also offer real-time service tracking to keep users informed every step of the way. Above all, our strong focus on customer satisfaction and rigorous quality assurance processes ensures that every service we deliver meets the highest standards.
+            </div>
+        </details>
+
+        </div>
+    </div>
+    </section>
+
+
+    <!-- Contact -->
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">Contact Us</h2>
+            
+            <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6">Get in Touch</h3>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope text-primary mr-4"></i>
+                            <span>service@trendingprofessionals.com</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-phone text-primary mr-4"></i>
+                            <span>+91 7204027477</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-primary mr-4 mt-1"></i>
+                            <span>
+                                GC 52, Aditya gold crest, Indrapuram<br>
+                                Ghaziabad-201014, Uttar Pradesh, India
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <!-- Google Map Embed -->
+                    <div class="rounded-lg overflow-hidden shadow-lg">
+                        <iframe 
+                            src="https://www.google.com/maps/d/embed?mid=1JeLFXoE8uaXV4B72dANwUFuIBDWo_24&ehbc=2E312F" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy">
+                        </iframe>
+                    </div>
+
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6">Send us a Message</h3>
+                    
+                    <!-- <form action="https://formsubmit.co/9271701297cd21b1919495d33c9a4a07" method="POST" id="contact-form" class="space-y-6"> -->
+                    <form action="https://formsubmit.co/8e998f489edd304ce28b301bd3320ceb" method="POST" id="contact-form" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                            <input 
+                                type="text" 
+                                id="name" 
+                                name="name"
+                                required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                                placeholder="Your full name!"
+                            >
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email"
+                                required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                                placeholder="Your email address!"
+                            >
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                            <textarea 
+                                id="message" 
+                                name="message"
+                                rows="6"
+                                required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                                placeholder="Please share complete details, including who you are, what you do, and how we can assist you. The more information you provide, the better we can tailor our support to your needs."
+                            ></textarea>
+                        </div>
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_subject" value="New Contact Request from Trending Professionals">
+                        <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
+                        <input type="hidden" name="_autoresponse" value="Thank you for contacting us. We'll get back to you shortly.">
+
+                        
+                        <button type="submit" class="w-full bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-dark transition font-semibold">
+                            Send Message
+                        </button>
+                        
+                        <p id="contact-message" class="text-center hidden"></p>
+                        <input type="hidden" name="_captcha" value="false">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <img src="TP.png" alt="Logo" style="height: 15%; width: 15%;">
+                        <span class="text-lg font-bold">Trending Professionals</span>
+                    </div>
+                    <p class="text-gray-400">
+                        Enabling Tomorrow’s India With Today’s Workforce Innovations
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition">About Us</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition">Services</a></li>
+                        <li><a href="#gallery" class="text-gray-400 hover:text-white transition">Gallery</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition">AC Installation & Repairing</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition">Refrigerator Repairing</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition">CCTV & Surveillance Solutions</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+                
+
+            <!-- Social Media Section -->
+            <div class="mb-4 flex justify-center space-x-6">
+                <a href="https://www.facebook.com/profile.php?id=61577646276562" target="_blank" class="text-gray-400 hover:text-white transition">
+                    <i class="fab fa-facebook-f text-2xl drop-shadow-lg hover:scale-110 transition-transform duration-300"></i>
+                </a>
+                </a>
+                <a href="https://www.linkedin.com/in/trending-professionals-71a37233a/" target="_blank" class="text-gray-400 hover:text-white transition">
+                    <i class="fab fa-linkedin-in text-2xl drop-shadow-lg hover:scale-110 transition-transform duration-300"></i>
+                </a>
+                <a href="https://www.instagram.com/trendingprofessionals_/" target="_blank" class="text-gray-400 hover:text-white transition">
+                    <i class="fab fa-instagram text-2xl drop-shadow-lg hover:scale-110 transition-transform duration-300"></i>
+                </a>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+                <p class="text-gray-400">
+                    &copy; 2025 Trending Professionals. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
